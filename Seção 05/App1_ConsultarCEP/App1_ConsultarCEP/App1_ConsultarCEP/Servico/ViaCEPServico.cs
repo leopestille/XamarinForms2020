@@ -18,9 +18,12 @@ namespace App1_ConsultarCEP.Servico
             WebClient webClient = new WebClient();
             string Conteudo = webClient.DownloadString(NovoEnderecoURL);
 
-            Endereço endereço =  JsonConvert.DeserializeObject<Endereço>(Conteudo);
+            Endereço end =  JsonConvert.DeserializeObject<Endereço>(Conteudo);
 
-            return endereço;
+            if (end.cep == null) return null;
+
+
+            return end;
 
         }
     }
